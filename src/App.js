@@ -3,6 +3,7 @@ import './App.css';
 import StudentEdit from './components/StudentEdit';
 import StudentData from './components/StudentData';
 import Loader from './components/Loader';
+import LibraryComponent from './components/LibraryComponent';
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <hr></hr>
 
         <StudentData></StudentData>
+
+        <LibraryComponent></LibraryComponent>
       </header>
     </div>
   );

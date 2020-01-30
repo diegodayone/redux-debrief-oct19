@@ -3,10 +3,7 @@ export default function (state= {}, action) {
         case "SET_NAME": {
             return {
                 ...state,
-                student: {
-                    ...state.student,
-                    name: action.payload
-                }
+                name: action.payload
             }
         }
         case "SET_LOADING":{

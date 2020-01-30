@@ -1,5 +1,7 @@
-import { createStore} from "redux"
-import reducer from "../reducers"
+import { createStore, combineReducers, compose, applyMiddleware } from "redux"
+import studentReducer from "../reducers/studentReducer"
+import libraryReducer from "../reducers/libraryReducer"
+import thunk from "redux-thunk"
 
 const initialState = {
     student: {
@@ -7,14 +9,22 @@ const initialState = {
         surname: "",
         age: null
     },
+    books: [],
     isLoading: false
 }
+
+const aggregatedReducer = combineReducers({
+    books: libraryReducer,
+    student: studentReducer
+})
+
+const composeEnhancers =  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 export default function configureStore() {
     return createStore(
         //reducer will be here,
-        reducer,
+        aggregatedReducer,
         initialState,
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        composeEnhancers(applyMiddleware(thunk))
     )
 }
